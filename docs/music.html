@@ -4,31 +4,79 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>音乐</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <style>
+    *{box-sizing:border-box;}
     body{max-width:720px;margin:40px auto;padding:0 16px;font-family:-apple-system,sans-serif;line-height:1.5;background:#ffd6e7;color:#4a2631;}
     h1{font-size:28px;margin-bottom:4px;}
     .tip{color:#9a6b7c;font-size:14px;margin-bottom:20px;}
+    .card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 4px 16px rgba(200,80,120,.18);}
+    audio{width:100%;margin-bottom:16px;}
+    .now{font-weight:bold;margin-bottom:14px;}
+    .now small{color:#9a6b7c;font-weight:normal;margin-left:8px;}
+    ul{list-style:none;margin:0;padding:0;}
+    li{padding:10px 12px;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+    li:hover{background:#ffeef4;}
+    li.active{background:#ffc2d4;font-weight:bold;}
+    li .artist{color:#b0788f;font-size:13px;}
+    .empty{color:#b0788f;text-align:center;padding:20px 0;}
 </style>
 </head>
 <body>
 <h1>&#9834; 音乐</h1>
-<div class="tip">点击下方播放按钮即可收听。</div>
+<div class="tip">点击列表中的歌曲即可播放。</div>
 
-<!-- 单曲：id 换成你想收听的网易云歌曲 ID（歌曲地址 ?id= 后面的数字） -->
-<meting-js
-    server="netease"
-    type="song"
-    id="5255631"
-    api="https://api.injahow.cn/meting/?server=netease"
-    fixed="false"
-    mini="false"
-    autoplay="false"
-    preload="auto"
-    volume="0.7">
-</meting-js>
+<div class="card">
+    <div class="now"><span id="nowTitle">未播放</span><small id="nowArtist"></small></div>
+    <audio id="audio" controls preload="metadata"></audio>
+    <ul id="playlist"></ul>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+<script>
+// ========== 歌曲列表 ==========
+// 使用方法：
+// 1. 把 mp3 文件上传到仓库的 static/audio/ 目录
+// 2. 在下面数组里加一行：{ title: "歌名", artist: "歌手", src: "audio/文件名.mp3" }
+// 3. 重新构建（Actions -> build Gmeek -> Run workflow）
+const songs = [
+    { title: "梦醒时分", artist: "李翊君", src: "audio/李翊君 - 梦醒时分.mp3" },
+];
+
+// ========== 以下为播放器逻辑，无需修改 ==========
+const audio = document.getElementById('audio');
+const listEl = document.getElementById('playlist');
+const nowTitle = document.getElementById('nowTitle');
+const nowArtist = document.getElementById('nowArtist');
+let current = -1;
+
+function renderList(){
+    listEl.innerHTML = '';
+    if(songs.length === 0){
+        listEl.innerHTML = '<li class="empty" style="cursor:default">还没有添加歌曲，请编辑 music.html 中的歌曲列表</li>';
+        return;
+    }
+    songs.forEach(function(s, i){
+        const li = document.createElement('li');
+        if(i === current) li.classList.add('active');
+        li.innerHTML = '<span>' + (i+1) + '. ' + s.title + '</span><span class="artist">' + s.artist + '</span>';
+        li.onclick = function(){ play(i); };
+        listEl.appendChild(li);
+    });
+}
+
+function play(i){
+    current = i;
+    audio.src = songs[i].src;
+    audio.play();
+    nowTitle.textContent = songs[i].title;
+    nowArtist.textContent = songs[i].artist;
+    renderList();
+}
+
+audio.addEventListener('ended', function(){
+    if(songs.length > 1){ play((current + 1) % songs.length); }
+});
+
+renderList();
+</script>
 </body>
 </html>
