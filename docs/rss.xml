@@ -1,5 +1,92 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>信の网站</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link><description>一个关于 Linux、K8s 与虚拟化技术的运维学习记录站。</description><copyright>信の网站</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/253055031?v=4&amp;size=64</url><title>avatar</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link></image><lastBuildDate>Tue, 20 Oct 2026 02:48:22 +0000</lastBuildDate><managingEditor>信の网站</managingEditor><ttl>60</ttl><webMaster>信の网站</webMaster><item><title>REDIS配置</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io/post/REDIS-pei-zhi.html</link><description>&lt;!-- obsidian --&gt;&lt;ol&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>信の网站</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link><description>一个关于 Linux、K8s 与虚拟化技术的运维学习记录站。</description><copyright>信の网站</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/253055031?v=4&amp;size=64</url><title>avatar</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link></image><lastBuildDate>Tue, 20 Oct 2026 06:15:50 +0000</lastBuildDate><managingEditor>信の网站</managingEditor><ttl>60</ttl><webMaster>信の网站</webMaster><item><title>Jenkins批量控制虚拟机开启与关闭</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io/post/Jenkins-pi-liang-kong-zhi-xu-ni-ji-kai-qi-yu-guan-bi.html</link><description>brew services start jenkins
+http://localhost:8080/
+
+### 终端查看启动的列表
+VMRUN='/Applications/VMware Fusion.app/Contents/Public/vmrun'
+'$VMRUN' list
+
+### 终端扫描
+find /Users -type f -name '*.vmx' 2&gt;/dev/null
+
+- ### 终端执行验证是否成功
+
+### 启动
+'/Applications/VMware Fusion.app/Contents/Public/vmrun' -T fusion start '/Users/chen/Virtual Machines.localized/Ubuntu 64-bit Arm 24.04.3.vmwarevm/Ubuntu 64-bit Arm 24.04.3.vmx'  gui
+
+
+### 列表
+'/Applications/VMware Fusion.app/Contents/Public/vmrun' list
+
+### 停止
+'/Applications/VMware Fusion.app/Contents/Public/vmrun' -T fusion stop '/Users/chen/Virtual Machines.localized/Ubuntu 64-bit Arm 24.04.3.vmwarevm/Ubuntu 64-bit Arm 24.04.3.vmx' soft
+
+### Jenkins下载插件
+Active Choices
+
+### groovy代码
+
+```
+def searchDirs = [
+    new File('/Users/chen/Virtual Machines.localized'),
+    new File('/Users/chen/Documents/Virtual Machines.localized')
+]
+
+def vmNames = []
+
+searchDirs.each { dir -&gt;
+    if (dir.exists()) {
+        dir.eachFileRecurse(groovy.io.FileType.FILES) { file -&gt;
+            if (file.name.endsWith('.vmx')) {
+                // 去掉 .vmx 后缀，只提取虚拟机名称
+                def vmName = file.name.replaceAll(/\.vmx$/, '')
+                vmNames.add(vmName)
+            }
+        }
+    }
+}
+
+// 排序并去重
+return vmNames.sort().unique()
+```
+
+&lt;img width='1082' height='930' alt='Image' src='https://github.com/user-attachments/assets/7467162f-e597-4e64-8ffe-a49476f18692' /&gt;
+
+&lt;img width='689' height='509' alt='Image' src='https://github.com/user-attachments/assets/a5fb7246-27d0-49d2-9f8d-6567a2b6d896' /&gt;
+
+&lt;img width='1082' height='930' alt='Image' src='https://github.com/user-attachments/assets/580a225c-bb86-4004-9664-c0c7da3b3458' /&gt;
+
+### shell代码
+```
+#!/bin/bash
+set -e
+
+# VMware Fusion vmrun 命令行工具路径
+VMRUN='/Applications/VMware Fusion.app/Contents/Library/vmrun'
+
+if [ ! -f '$VMRUN' ]; then
+    echo '[ERROR] 未找到 vmrun 工具: $VMRUN'
+    exit 1
+fi
+
+echo '=========================================='
+echo '1. 解析选中的虚拟机名称'
+echo '=========================================='
+
+SELECTED_VMS=()
+if [ -n '$VM_LIST' ]; then
+    IFS=',' read -r -a RAW_SELECTED &lt;&lt;&lt; '$VM_LIST'
+    for name in '${RAW_SELECTED[@]}'; do
+        trimmed=$(echo '$name' | xargs)
+        if [ -n '$trimmed' ]; then
+            SELECTED_VMS+=('$trimmed')
+            echo '-&gt; 目标保持运行: $trimmed'
+        fi
+    done
+fi
+
+if [ ${#SELECTED_VMS[@]} -eq 0 ]; then
+    echo '提示: 未勾选任何虚拟机，所有运行中的虚拟机将被关机。</description><guid isPermaLink="true">https://chenjiaxin485-stack.github.io/chen666.github.io/post/Jenkins-pi-liang-kong-zhi-xu-ni-ji-kai-qi-yu-guan-bi.html</guid><pubDate>Tue, 20 Oct 2026 06:15:18 +0000</pubDate></item><item><title>REDIS配置</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io/post/REDIS-pei-zhi.html</link><description>&lt;!-- obsidian --&gt;&lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;惰性删除&lt;/strong&gt;：访问 key 时才检查是否过期，过期则删除&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;定期删除&lt;/strong&gt;：定时抽查一批 key，删掉过期的&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;持久化过滤&lt;/strong&gt;：RDB/AOF 不会保存已过期的 key&lt;/li&gt;
