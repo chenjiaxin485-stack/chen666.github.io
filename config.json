@@ -3,5 +3,6 @@
     "subTitle":"一个关于 Linux、K8s 与虚拟化技术的运维学习记录站。",
     "avatarUrl":"https://avatars.githubusercontent.com/u/253055031?v=4&size=64",
     "singlePage":["about"],
+    "allHead":"<style>#footer2 span:last-child{display:none}#footer p{display:none}</style>",
     "GMEEK_VERSION":"last"
 }
