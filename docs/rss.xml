@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>信の网站</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link><description>记录知识的教学网站</description><copyright>信の网站</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/253055031?v=4&amp;size=64</url><title>avatar</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link></image><lastBuildDate>Tue, 20 Oct 2026 02:17:47 +0000</lastBuildDate><managingEditor>信の网站</managingEditor><ttl>60</ttl><webMaster>信の网站</webMaster><item><title>NGINX配置</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io/post/NGINX-pei-zhi.html</link><description>nginx -t
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>信の网站</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link><description>记录知识的教学网站</description><copyright>信の网站</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/253055031?v=4&amp;size=64</url><title>avatar</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io</link></image><lastBuildDate>Tue, 20 Oct 2026 02:22:21 +0000</lastBuildDate><managingEditor>信の网站</managingEditor><ttl>60</ttl><webMaster>信の网站</webMaster><item><title>REDIS配置</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io/post/REDIS-pei-zhi.html</link><description>&lt;!-- obsidian --&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;惰性删除&lt;/strong&gt;：访问 key 时才检查是否过期，过期则删除&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;定期删除&lt;/strong&gt;：定时抽查一批 key，删掉过期的&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;持久化过滤&lt;/strong&gt;：RDB/AOF 不会保存已过期的 key&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内存淘汰策略&lt;/strong&gt;：内存满了时，按配置的策略（LRU/LFU/Random 等）主动腾空间&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;定期 + 惰性&lt;/strong&gt; 管过期，&lt;strong&gt;淘汰策略&lt;/strong&gt; 管内存上限，&lt;strong&gt;持久化&lt;/strong&gt; 不备份死数据。</description><guid isPermaLink="true">https://chenjiaxin485-stack.github.io/chen666.github.io/post/REDIS-pei-zhi.html</guid><pubDate>Tue, 20 Oct 2026 02:21:53 +0000</pubDate></item><item><title>NGINX配置</title><link>https://chenjiaxin485-stack.github.io/chen666.github.io/post/NGINX-pei-zhi.html</link><description>nginx -t
 检查语法
 
 nginx -s reload
