@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>音乐</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<style>
+    body{max-width:720px;margin:40px auto;padding:0 16px;font-family:-apple-system,sans-serif;line-height:1.5;}
+    @media (prefers-color-scheme: dark){
+        body{background:#0d1117;color:#e6edf3;}
+        .tip{color:#8b949e;}
+    }
+    h1{font-size:28px;margin-bottom:4px;}
+    .tip{color:#656d76;font-size:14px;margin-bottom:20px;}
+</style>
+</head>
+<body>
+<h1>&#9834; 音乐</h1>
+<div class="tip">点击列表中的歌曲即可播放，祝听歌愉快。</div>
+
+<!-- 把 id 换成你自己的网易云歌单 ID（歌单网页地址里的数字） -->
+<meting-js
+    server="netease"
+    type="playlist"
+    id="https://music.163.com/song?id=28186082&uct2=U2FsdGVkX18b3D7dkmCjp8zdxKZ6YPxuAQDxVqTqocY="
+    fixed="false"
+    mini="false"
+    autoplay="false"
+    list-folded="false"
+    order="random"
+    volume="0.7">
+</meting-js>
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+</body>
+</html>
