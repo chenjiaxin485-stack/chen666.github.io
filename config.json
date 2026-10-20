@@ -3,6 +3,8 @@
     "subTitle":"一个关于 Linux、K8s 与虚拟化技术的运维学习记录站。",
     "avatarUrl":"https://avatars.githubusercontent.com/u/253055031?v=4&size=64",
     "singlePage":["about"],
+    "exlink":{"music":"https://chenjiaxin485-stack.github.io/chen666.github.io/music.html"},
+    "iconList":{"music":"M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2zM9 3v10H8V3h1zM8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z"},
     "allHead":"<style>#footer2 span:last-child{display:none}#footer p{display:none}</style>",
     "GMEEK_VERSION":"last"
 }
