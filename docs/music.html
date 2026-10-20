@@ -6,7 +6,7 @@
 <title>音乐</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <style>
-    body{max-width:720px;margin:40px auto;padding:0 16px;font-family:-apple-system,sans-serif;line-height:1.5;}
+    body{max-width:720px;margin:40px auto;padding:0 16px;font-family:-apple-system,sans-serif;line-height:1.5;background:#ffffff;color:#24292f;}
     @media (prefers-color-scheme: dark){
         body{background:#0d1117;color:#e6edf3;}
         .tip{color:#8b949e;}
@@ -17,18 +17,16 @@
 </head>
 <body>
 <h1>&#9834; 音乐</h1>
-<div class="tip">点击列表中的歌曲即可播放，祝听歌愉快。</div>
+<div class="tip">点击下方播放按钮即可收听。</div>
 
-<!-- 把 id 换成你自己的网易云歌单 ID（歌单网页地址里的数字） -->
+<!-- 单曲：id 换成你想收听的网易云歌曲 ID（歌曲地址 ?id= 后面的数字） -->
 <meting-js
     server="netease"
-    type="playlist"
-    id="https://music.163.com/song?id=28186082&uct2=U2FsdGVkX18b3D7dkmCjp8zdxKZ6YPxuAQDxVqTqocY="
+    type="song"
+    id="28186082"
     fixed="false"
     mini="false"
     autoplay="false"
-    list-folded="false"
-    order="random"
     volume="0.7">
 </meting-js>
 
